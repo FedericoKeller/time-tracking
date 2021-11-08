@@ -1,0 +1,12 @@
+.main-report {
+  background-color: var(--very-dark-blue);
+  min-height: 100vh;
+  width: 100%;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+}
