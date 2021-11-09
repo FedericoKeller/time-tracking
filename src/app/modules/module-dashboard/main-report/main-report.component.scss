@@ -1,12 +1,24 @@
+
+
 .main-report {
-  background-color: var(--very-dark-blue);
   min-height: 100vh;
+  background-color: var(--very-dark-blue);
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    overflow: hidden;
+  }
+
+  .column {
+    height: 100%;
+    background-color: turquoise;
+    grid-column: 1;
+    grid-row: 1 / 3;
   }
 }

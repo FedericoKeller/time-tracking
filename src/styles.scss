@@ -9,6 +9,7 @@
 
 :root {
   //Primary
+  --light-orange: hsl(15, 100%, 70%);
   --color-blue: hsl(246, 80%, 60%);
   --soft-blue: hsl(195, 74%, 62%);
   --light-red: hsl(348, 100%, 68%);
@@ -32,3 +33,26 @@ body {
 }
 
 
+.u-center-text {
+  text-align: center!important;
+}
+
+.u-margin-bottom--big {
+  margin-bottom: 8rem!important;
+}
+
+.u-margin-bottom--small {
+  margin-bottom: 1.5rem!important;
+}
+
+.u-margin-bottom--medium {
+  margin-bottom: 4rem!important;
+}
+
+.u-margin-top--big {
+  margin-top: 8rem!important;
+}
+
+.u-margin-top--huge {
+  margin-top: 10rem!important;
+}
