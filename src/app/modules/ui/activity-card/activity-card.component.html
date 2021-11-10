@@ -1,21 +1,29 @@
 <div class="activity-card">
-<section class="activity-card__banner">
-<div class="activity-card__banner__container">
-  <img class="activity-card__banner__img" src="../../../../assets/images/icon-work.svg">
-</div>
-</section>
-<section class="activity-card__main">
-  <h4 class="activity-card__main__heading u-margin-bottom--small">
-    <span class="activity-card__main__heading-title">
-      Work
-    </span>
-    <span class="activity-card__main__heading-actions">
-      ...
-    </span>
-  </h4>
-  <div class="activity-card__main__details">
-    <p class="activity-card__main__details--main">32hrs</p>
-    <p class="activity-card__main__details--sub">Last Week - 36hs</p>
-  </div>
-</section>
+  <section class="banner">
+    <div
+      [style.background]="activityMap[data.title].background"
+      class="banner__container"
+    >
+      <img
+        class="banner__img"
+        src="../../../../assets/images/{{ activityMap[data.title].icon }}.svg"
+      />
+    </div>
+  </section>
+
+  <section class="main">
+    <h4 class="main__heading u-margin-bottom--small">
+      <span class="main__heading-title">
+        {{ data.title }}
+      </span>
+      <span class="main__heading-actions"> ... </span>
+    </h4>
+    <div class="main__details">
+      <p class="main__details--main">{{ data.timeframes.weekly.current }}hs</p>
+      <p class="main__details--sub">
+        Last Week - {{ data.timeframes.weekly.previous }}hs
+      </p>
+    </div>
+  </section>
+
 </div>

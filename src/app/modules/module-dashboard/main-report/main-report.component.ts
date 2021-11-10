@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TotalActivity }  from '../index';
 
 @Component({
   selector: 'app-main-report',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainReportComponent implements OnInit {
 
+  totalActivity = TotalActivity;
+
   constructor() { }
 
   ngOnInit() {
   }
 
 }
+
