@@ -50,7 +50,13 @@
       }
 
       .frequency__item {
-        color: var(--desaturated-blue)
+        color: var(--desaturated-blue);
+
+        &:hover,
+        &:active {
+          color: var(--pale-blue);
+          cursor: pointer;
+        }
       }
     }
 
