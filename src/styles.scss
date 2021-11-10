@@ -1,3 +1,4 @@
+@use '../mixins' as *;
 
 *,
 *::before,
@@ -29,33 +30,48 @@
 
 html {
   font-size: 112.5%; //18px
+
+  @include respond(tab-land) {
+    // width < 1200?
+    font-size: 75%; //1rem = 12px; 12px/16px = 75%;
+  }
+
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 56.25%; //1rem = 8px; 8px/16px = 50%;
+  }
 }
 
 body {
   box-sizing: border-box;
+  margin: 0;
 }
 
-
 .u-center-text {
-  text-align: center!important;
+  text-align: center !important;
 }
 
 .u-margin-bottom--big {
-  margin-bottom: 8rem!important;
+  margin-bottom: 8rem !important;
 }
 
 .u-margin-bottom--small {
-  margin-bottom: 1.5rem!important;
+  margin-bottom: 1.5rem !important;
 }
 
 .u-margin-bottom--medium {
-  margin-bottom: 4rem!important;
+  margin-bottom: 4rem !important;
 }
 
 .u-margin-top--big {
-  margin-top: 8rem!important;
+  margin-top: 8rem !important;
 }
 
 .u-margin-top--huge {
-  margin-top: 10rem!important;
+  margin-top: 10rem !important;
+}
+
+html,
+body {
+  height: 100%;
 }

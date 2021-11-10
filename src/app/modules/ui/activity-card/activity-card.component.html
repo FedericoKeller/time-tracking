@@ -1,5 +1,5 @@
 <div class="activity-card">
-  <section class="banner">
+  <mat-card class="banner">
     <div
       [style.background]="activityMap[data.title].background"
       class="banner__container"
@@ -9,9 +9,9 @@
         src="../../../../assets/images/{{ activityMap[data.title].icon }}.svg"
       />
     </div>
-  </section>
+  </mat-card>
 
-  <section class="main">
+  <mat-card class="main" matRipple>
     <h4 class="main__heading u-margin-bottom--small">
       <span class="main__heading-title">
         {{ data.title }}
@@ -24,6 +24,6 @@
         Last Week - {{ data.timeframes.weekly.previous }}hs
       </p>
     </div>
-  </section>
+  </mat-card>
 
 </div>

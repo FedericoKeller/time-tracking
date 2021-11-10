@@ -1,6 +1,14 @@
+@use "../../../../../mixins" as *;
+
+
+.mat-card {
+  background: transparent;
+}
+
 .activity-card {
   width: 15rem;
-  height: 12.75rem;
+  height: 11rem;
+
 
   .banner {
     position: relative;
@@ -28,14 +36,15 @@
   }
 
   .main {
-    color: #fff;
     font-family: "Rubik", sans-serif;
+    color: #fff;
     background-color: var(--dark-blue);
-    height: 10rem;
+    height: 100%;
     border-radius: var(--border-radius);
     padding: 1rem;
     width: 100%;
     position: relative;
+    user-select: none;
 
     &__heading {
       display: flex;

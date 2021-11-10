@@ -14,11 +14,13 @@
           </div>
         </div>
         <div class="column__content">
-          <ul class="frequency__list">
-            <li class="frequency__item">Daily</li>
-            <li class="frequency__item">Weekly</li>
-            <li class="frequency__item">Monthly</li>
-          </ul>
+          <div class="column__content__container">
+            <ul class="frequency__list">
+              <li class="frequency__item">Daily</li>
+              <li class="frequency__item active ">Weekly</li>
+              <li class="frequency__item">Monthly</li>
+            </ul>
+          </div>
         </div>
       </div>
       <app-activity-card *ngFor="let item of this.totalActivity" [data]="item"></app-activity-card>
