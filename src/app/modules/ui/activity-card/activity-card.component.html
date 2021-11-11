@@ -11,19 +11,22 @@
     </div>
   </mat-card>
 
-  <mat-card class="main" matRipple>
-    <h4 class="main__heading u-margin-bottom--small">
-      <span class="main__heading-title">
-        {{ data.title }}
-      </span>
-      <span class="main__heading-actions"> ... </span>
-    </h4>
-    <div class="main__details">
-      <p class="main__details--main">{{ data.timeframes.weekly.current }}hs</p>
-      <p class="main__details--sub">
-        Last Week - {{ data.timeframes.weekly.previous }}hs
-      </p>
-    </div>
-  </mat-card>
-
+  <div class="container">
+    <button mat-icon-button (click)="$event.preventDefault()">
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+    <mat-card class="main" matRipple>
+      <h4 class="main__heading u-margin-bottom--small">
+          {{ data.title }}
+      </h4>
+      <div class="main__details">
+        <p class="main__details--main">
+          {{ data.timeframes[(frequency | async)!].current}}hs
+        </p>
+        <p class="main__details--sub">
+          Last Week - {{ data.timeframes[(frequency | async)!].previous }}hs
+        </p>
+      </div>
+    </mat-card>
+  </div>
 </div>

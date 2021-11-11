@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { FrequencyExpected, FrequencyService } from 'src/app/services/frequency.service';
 import { ActivityAssets, ActivityData } from '../../module-dashboard';
 
 export interface ActivityProperties {
@@ -42,7 +44,11 @@ export class ActivityCardComponent implements OnInit {
 
   activityMap = ACTIVITY_MAP;
 
-  constructor() { }
+  frequency: Observable<FrequencyExpected>;
+
+  constructor(private frequencyService: FrequencyService) {
+    this.frequency = this.frequencyService.frequencyStateEvent;
+   }
 
   ngOnInit() {
   }

@@ -9,6 +9,11 @@
   width: 15rem;
   height: 11rem;
 
+  @include respond(tab-port) {
+    width: 21rem;
+    height: 9rem;
+    margin-bottom: 4rem;
+  }
 
   .banner {
     position: relative;
@@ -35,6 +40,19 @@
     }
   }
 
+  .container {
+    height: 100%;
+    position: relative;
+    z-index: 0;
+
+    .mat-icon-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: #fff;
+      z-index: 1;
+    }
+  }
   .main {
     font-family: "Rubik", sans-serif;
     color: #fff;
@@ -45,6 +63,7 @@
     width: 100%;
     position: relative;
     user-select: none;
+
 
     &__heading {
       display: flex;

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MainReportComponent } from './main-report/main-report.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivityCardModule } from '../ui/activity-card/activity-card.module';
+import { FrequencyService } from 'src/app/services/frequency.service';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
     ActivityCardModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [MainReportComponent]
+  declarations: [MainReportComponent],
+  providers: [
+    FrequencyService,
+  ]
 })
 export class DashboardModule { }

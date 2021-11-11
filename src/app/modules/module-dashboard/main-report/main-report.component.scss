@@ -72,8 +72,11 @@
         }
 
         .frequency__item {
-
           color: var(--desaturated-blue);
+
+          &::first-letter {
+            text-transform: uppercase;
+          }
 
           &.active {
             color: var(--pale-blue);
@@ -132,6 +135,7 @@
 
         @include respond(tab-port) {
           font-size: 1rem;
+          display: inline-block;
         }
       }
     }

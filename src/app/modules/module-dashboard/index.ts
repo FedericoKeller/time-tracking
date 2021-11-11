@@ -1,6 +1,4 @@
 export type ActivityAssets = "Work" | "Play" | "Study" | "Exercise" | "Social" | "Self Care";
-
-
 export interface ActivityData {
   title: ActivityAssets;
   timeframes: ActivityTimeframes;

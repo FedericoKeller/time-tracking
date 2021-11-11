@@ -8,7 +8,7 @@
          </div>
           <div class="column__text">
             <h2 class="column__text--main">Report for</h2>
-            <h2 class="column__text--sub">Jeremy</h2>
+            <h2 class="column__text--sub">Jeremy&nbsp;</h2>
             <h2 class="column__text--sub">Robson</h2>
 
           </div>
@@ -16,9 +16,7 @@
         <div class="column__content">
           <div class="column__content__container">
             <ul class="frequency__list">
-              <li class="frequency__item">Daily</li>
-              <li class="frequency__item active ">Weekly</li>
-              <li class="frequency__item">Monthly</li>
+              <li class="frequency__item" #frequencyItem *ngFor="let frequency of totalFrequencies" (click)="changeState(frequency)">{{frequency}}</li>
             </ul>
           </div>
         </div>
