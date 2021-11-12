@@ -2,7 +2,7 @@
   <div class="container">
     <div class="main-report__container">
       <div class="column">
-        <div class="column__heading">
+        <section class="column__heading">
          <div class="column__image">
           <img class="user__img" src="../../../../assets/images/image-jeremy.png">
          </div>
@@ -12,14 +12,14 @@
             <h2 class="column__text--sub">Robson</h2>
 
           </div>
-        </div>
-        <div class="column__content">
+        </section>
+        <section class="column__content">
           <div class="column__content__container">
-            <ul class="frequency__list">
-              <li class="frequency__item" #frequencyItem *ngFor="let frequency of totalFrequencies" (click)="changeState(frequency)">{{frequency}}</li>
-            </ul>
+            <div class="frequency__list">
+              <button mat-button class="frequency__item" #frequencyItem [disableRipple]="true" *ngFor="let frequency of totalFrequencies" (click)="changeState(frequency)">{{frequency}}</button>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
       <app-activity-card *ngFor="let item of this.totalActivity" [data]="item"></app-activity-card>
     </div>

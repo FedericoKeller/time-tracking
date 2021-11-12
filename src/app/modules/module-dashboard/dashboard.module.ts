@@ -4,6 +4,7 @@ import { MainReportComponent } from './main-report/main-report.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivityCardModule } from '../ui/activity-card/activity-card.module';
 import { FrequencyService } from 'src/app/services/frequency.service';
+import { SharedModule } from '../shared.module';
 
 const routes: Routes = [
   {
@@ -18,9 +19,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
     ActivityCardModule,
     RouterModule.forChild(routes),
+    SharedModule,
   ],
   declarations: [MainReportComponent],
   providers: [
