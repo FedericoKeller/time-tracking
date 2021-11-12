@@ -10,7 +10,7 @@
   height: 11rem;
 
   @include respond(tab-port) {
-    width: 21rem;
+    width: 25rem;
     height: 9rem;
     margin-bottom: 4rem;
   }
@@ -51,6 +51,7 @@
       right: 0;
       color: #fff;
       z-index: 1;
+      transform: translate(-50%, 15%);
     }
   }
   .main {
@@ -69,18 +70,26 @@
       display: flex;
       justify-content: space-between;
       font-weight: 400;
+      margin-left: 1rem;
     }
 
     &__details {
       padding-left: 1rem;
       font-weight: 300;
 
+      @include respond(tab-port) {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+      }
+
       &--main {
-        font-size: 3rem;
+        font-size: 3.5rem;
       }
 
       &--sub {
-        font-size: 0.8rem;
+        margin-top: 0.4rem;
+        font-size: 0.9rem;
         color: var(--pale-blue);
       }
     }
