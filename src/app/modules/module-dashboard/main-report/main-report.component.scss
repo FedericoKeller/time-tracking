@@ -36,6 +36,7 @@
       @include respond(tab-port) {
         height: 7rem;
         display: flex;
+        align-items: center;
       }
     }
 
@@ -103,6 +104,10 @@
       position: relative;
       border: 3px solid #fff;
       border-radius: 50%;
+
+      @include respond(tab-port) {
+        border: 2px solid #fff;
+      }
 
 
       .user__img {
