@@ -52,6 +52,10 @@
       color: #fff;
       z-index: 1;
       transform: translate(-50%, 15%);
+
+      @include respond(tab-port) {
+        transform: translate(-50%, 0%);
+       }
     }
   }
   .main {
