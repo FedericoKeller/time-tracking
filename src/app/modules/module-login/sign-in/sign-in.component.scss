@@ -1,3 +1,6 @@
+@use "../../../../../mixins" as *;
+
+
 .section-login {
   min-height: 100vh;
   background-color: var(--very-dark-blue);
@@ -9,6 +12,15 @@
   .row {
     max-width: 70rem;
     width: 100%;
+
+    @include respond(tab-port) {
+      max-width: 55rem;
+    }
+
+    @include respond(phone) {
+      max-width: 25rem;
+    }
+
 
     .login {
       &__header {
@@ -24,6 +36,17 @@
             transparent 50%
           ),
           url(../../../../assets/img/4864967.jpg);
+
+
+          @include respond(phone) {
+            background-image: linear-gradient(
+              105deg,
+              rgba(255, 255, 255, 0.9) 0%,
+              rgba(255, 255, 255, 0.9) 100%
+            ),
+            url(../../../../assets/img/4864967.jpg);
+          }
+
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 0;
@@ -35,6 +58,16 @@
         width: 50%;
         background-color: transparent;
         box-shadow: none;
+
+        @include respond(tab-port) {
+          padding: 5rem;
+        }
+
+        @include respond(phone) {
+          padding: 2rem;
+          width: 100%;
+        }
+
       }
     }
   }
