@@ -4,6 +4,7 @@ import { SharedModule } from '../shared.module';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignInService } from './services/sign-in.service';
 
 const routes: Routes = [
   {
@@ -27,6 +28,9 @@ const routes: Routes = [
   ],
   declarations: [
     SignInComponent,
+  ],
+  providers: [
+    SignInService,
   ]
 })
 export class LoginModule { }
