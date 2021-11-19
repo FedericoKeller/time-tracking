@@ -6,7 +6,7 @@ import { MainInterceptor } from './interceptors/main.interceptor';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     loadChildren: () =>
       import('./modules/module-login/login.module').then((m) => m.LoginModule),
   },

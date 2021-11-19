@@ -3,11 +3,12 @@
 
 .section-login {
   min-height: 100vh;
-  background-color: var(--very-dark-blue);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--very-dark-blue);
+
 
   .row {
     max-width: 60rem;
@@ -78,10 +79,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 2rem;
 
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-    }
   }
 
   &__input {
@@ -103,11 +102,27 @@
 
   }
 
+  &__link {
+    color: var(--desaturated-blue);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+
+  &__password {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.7rem;
+
+    .form__label {
+      margin: 0;
+    }
+  }
+
 
 
   &__label {
     font-size: 0.8rem;
-    transition: all 0.3s;
     margin-left: 1rem;
     margin-bottom: 0.7rem;
     color: var(--very-dark-blue);
@@ -128,10 +143,18 @@
   &--blue {
     background-color: var(--color-blue);
     color: #fff;
+    width: 100%;
 
     &:focus,
     &:active {
       outline: 4px solid var(--pale-blue);
     }
   }
+}
+
+.register {
+  color: var(--very-dark-blue);
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-align: center;
 }

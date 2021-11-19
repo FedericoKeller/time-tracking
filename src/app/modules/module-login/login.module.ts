@@ -5,16 +5,21 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInService } from './services/sign-in.service';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'login',
+    component: SignInComponent,
+  },
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
-  },
-  {
-    path: '',
-    component: SignInComponent
   },
 
 ]
@@ -28,6 +33,7 @@ const routes: Routes = [
   ],
   declarations: [
     SignInComponent,
+    RegisterComponent,
   ],
   providers: [
     SignInService,

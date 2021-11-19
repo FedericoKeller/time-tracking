@@ -15,15 +15,21 @@
             </div>
 
             <div class="form__group">
-              <label for="password" class="form__label">Password</label>
+              <div class="form__password">
+                <label for="password" class="form__label">Password</label>
+                <h2 class="form__link">Forgot your password?</h2>
+              </div>
               <input id="password" name="password" class="form__input" type="password" formControlName="password" autocomplete="password" required/>
             </div>
-            <div class="form__group u-margin-top--medium">
+            <div class="u-margin-bottom--small">
               <button class="btn btn--blue" (click)="login()">
                   Continue
               </button>
           </div>
           </form>
+          <div>
+            <h3 class="register">Don't have an account? <a class="form__link" routerLink="/register">Sign up</a></h3>
+          </div>
         </mat-card>
       </div>
       </div>
