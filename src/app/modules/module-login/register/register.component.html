@@ -1,1 +1,45 @@
-<div class="container"><h2>Hola</h2></div>
+<div class="section-register">
+  <div class="row">
+    <div class="register">
+      <div class="container">
+        <mat-card class="register__form">
+          <form class="form" [formGroup]="registerForm">
+            <div class="u-margin-bottom--small">
+              <h2 class="register__header">Registration</h2>
+
+            </div>
+
+            <div class="form__group">
+              <label for="email" class="form__label">Email</label>
+              <input id="email" name="email" class="form__input" type="email" formControlName="email" autocomplete="email" required/>
+            </div>
+
+            <section formGroupName="passwordsGroup">
+            <div class="form__group">
+                <label for="password" class="form__label">Password</label>
+              <input id="password" name="password" class="form__input" type="password" formControlName="password" autocomplete="password" required/>
+            </div>
+
+            <div class="form__group">
+              <label for="password" class="form__label">Repeat Password</label>
+              <input id="passwordConfirm" name="passwordConfirm" class="form__input" type="password" formControlName="passwordConfirm" autocomplete="passwordConfirm" required/>
+              <mat-error class="message__error" *ngIf="this.registerForm.controls.passwordsGroup.hasError('passwordError') && this.registerForm.controls.passwordsGroup.get('passwordConfirm')?.touched &&this.registerForm.controls.passwordsGroup.get('passwordConfirm')?.dirty">Those passwords didn’t match. Try again.</mat-error>
+            </div>
+          </section>
+
+
+
+            <div class="u-margin-bottom--small">
+              <button type="submit" class="btn btn--blue">
+                  Continue
+              </button>
+          </div>
+          </form>
+          <div>
+            <h3 class="login">Already have an account? <a class="form__link" routerLink="/login">Log in</a></h3>
+          </div>
+        </mat-card>
+      </div>
+      </div>
+  </div>
+</div>
