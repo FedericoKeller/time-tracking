@@ -13,4 +13,8 @@ constructor(private httpClient: HttpClient) { }
 login(email: any): Observable<any> {
   return this.httpClient.post(`${environment.apiUrl}auth/login`, email);
 }
+
+register(data: any): Observable<any> {
+  return this.httpClient.post(`${environment.apiUrl}auth/register`, data);
+}
 }

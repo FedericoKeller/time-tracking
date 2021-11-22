@@ -22,7 +22,7 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
-    this.signInService.login({email: this.loginForm.get("email")?.value})
+    this.signInService.login({email: this.loginForm.get("email")?.value, password: this.loginForm.get("password")?.value})
     .subscribe(value => {
       console.log(value)
     })

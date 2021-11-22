@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { SignInService } from '../services/sign-in.service';
 
 const passwordErrorValidator: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
   const pass = group.get('password');
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder, private signInService: SignInService) {
+
     this.registerForm = this.fb.group({
       email: new FormControl('', [Validators.required]),
       passwordsGroup: this.fb.group(
@@ -29,8 +31,15 @@ export class RegisterComponent implements OnInit {
         { validators: passwordErrorValidator }
       ),
     });
+
   }
 
   ngOnInit() {
+  }
+
+  register(): void {
+    this.signInService.register({email: this.registerForm.get("email")?.value, password: this.registerForm.controls.passwordsGroup.get("password")?.value}).subscribe(data => {
+      console.log(data)
+    })
   }
 }

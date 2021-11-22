@@ -39,4 +39,4 @@ const routes: Routes = [
     SignInService,
   ]
 })
-export class LoginModule { }
+export class AuthenticationModule { }

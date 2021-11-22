@@ -27,7 +27,7 @@ export class MainInterceptor implements HttpInterceptor {
 
 
   handleError(error: HttpErrorResponse) {
-    this.snackbarService.open(error.message, "Aceptar", 5000, "error-snackbar");
+    this.snackbarService.open(error.error.error, "Aceptar", 5000, "error-snackbar");
     return throwError(error);
   }
 
