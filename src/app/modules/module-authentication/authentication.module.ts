@@ -8,7 +8,8 @@ import { SignInService } from './services/sign-in.service';
 import { RegisterComponent } from './register/register.component';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthenticationEffects } from './store/authentication.effects';
-
+import { StoreModule } from '@ngrx/store';
+import * as fromLogin from './store/authentication.reducer';
 const routes: Routes = [
   {
     path: 'register',
@@ -31,6 +32,7 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
     EffectsModule.forFeature([AuthenticationEffects]),
+    StoreModule.forFeature(fromLogin.loginFeaturedKey, fromLogin.loginReducer),
     ReactiveFormsModule,
     FormsModule,
   ],
