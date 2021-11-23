@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInService } from './services/sign-in.service';
 import { RegisterComponent } from './register/register.component';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthenticationEffects } from './store/authentication.effects';
 
 const routes: Routes = [
   {
@@ -28,6 +30,7 @@ const routes: Routes = [
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
+    EffectsModule.forFeature([AuthenticationEffects]),
     ReactiveFormsModule,
     FormsModule,
   ],
