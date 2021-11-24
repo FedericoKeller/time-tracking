@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainReportComponent } from './main-report/main-report.component';
+import { MainReportComponent } from './components/main-report/main-report.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivityCardModule } from '../ui/activity-card/activity-card.module';
 import { FrequencyService } from 'src/app/services/frequency.service';

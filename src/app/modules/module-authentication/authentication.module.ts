@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared.module';
-import { SignInComponent } from './sign-in/sign-in.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInService } from './services/sign-in.service';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AccountVerificationGuard } from './guards/account-verification.guard';
 
 const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+    canActivateChild: [
+      AccountVerificationGuard
+    ],
+    children: [
+      {
+        path: ':token' ,
+      }
+    ]
   },
   {
     path: 'login',
@@ -36,6 +45,7 @@ const routes: Routes = [
     RegisterComponent,
   ],
   providers: [
+    AccountVerificationGuard,
     SignInService,
   ]
 })

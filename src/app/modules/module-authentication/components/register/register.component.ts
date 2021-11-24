@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { SignInService } from '../services/sign-in.service';
+import { SignInService } from '../../services/sign-in.service';
 
 const passwordErrorValidator: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
   const pass = group.get('password');

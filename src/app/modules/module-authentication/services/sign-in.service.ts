@@ -17,4 +17,8 @@ login(email: any): Observable<any> {
 register(data: any): Observable<any> {
   return this.httpClient.post(`${environment.apiUrl}auth/register`, data);
 }
+
+validateAccount(token: string) {
+return this.httpClient.put(`${environment.apiUrl}auth/reset/${token}`, {});
+}
 }
