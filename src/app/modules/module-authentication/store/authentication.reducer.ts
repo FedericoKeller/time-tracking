@@ -10,5 +10,11 @@ export const loginFeaturedKey = 'login';
 
 export const loginReducer = createReducer(
   initialState,
-  on(LoginActions.login, (state, payload) => ({email: payload.email, password: payload.password}))
+  on(LoginActions.login, (state, payload) => ({...state, email: payload.email, password: payload.password}))
+);
+
+
+export const resetReducer = createReducer(
+  initialState,
+  on(LoginActions.reset, (state, payload) => ({...initialState}))
 );

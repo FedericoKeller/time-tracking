@@ -5,3 +5,9 @@ export const login = createAction(
   '[Login Page] Login',
   props<Credentials>()
 );
+
+
+export const reset = createAction(
+  '[Login Page] Reset',
+  props<Credentials>()
+);
