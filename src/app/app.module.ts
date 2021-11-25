@@ -8,9 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AuthenticationEffects } from './modules/module-authentication/store/authentication.effects';
-import * as fromLogin from './modules/module-authentication/store/authentication.reducer';
-import { SignInService } from './modules/module-authentication/services/sign-in.service';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { AuthenticationEffects } from './auth/authentication.effects';
+import * as fromLogin from './auth/authentication.reducer';
+import { SignInService } from './services/sign-in.service';
+import { appReducer } from './store/app.state';
 @NgModule({
   declarations: [
     AppComponent
@@ -20,7 +22,8 @@ import { SignInService } from './modules/module-authentication/services/sign-in.
     AppRoutingModule,
     BrowserAnimationsModule,
     EffectsModule.forRoot([AuthenticationEffects]),
-    StoreModule.forRoot({login: fromLogin.loginReducer}),
+    StoreModule.forRoot(appReducer),
+    StoreRouterConnectingModule.forRoot(),
     HttpClientModule,
     MaterialModule,
   ],

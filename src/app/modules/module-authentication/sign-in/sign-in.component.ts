@@ -2,13 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Credentials } from '../models/credentials.model';
-import { SignInService } from '../services/sign-in.service';
-import { login } from '../store/login-page.actions';
-
-export interface AppStore {
-  login: Credentials;
-}
+import { Credentials } from '../../../models/credentials.model';
+import { SignInService } from '../../../services/sign-in.service';
+import { login } from '../../../auth/login-page.actions';
+import { AppState } from 'src/app/store/app.state';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -19,7 +16,7 @@ export class SignInComponent implements OnInit {
   loginForm: FormGroup;
 
 
-  constructor(private signInService: SignInService, private store: Store<AppStore>, private router: Router) {
+  constructor(private signInService: SignInService, private store: Store<AppState>, private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
