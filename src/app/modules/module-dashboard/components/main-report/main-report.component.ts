@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { FrequencyExpected, FrequencyService } from 'src/app/services/frequency.service';
-import { TotalActivity } from '../index';
+import { TotalActivity } from '../../index';
 
 @Component({
   selector: 'app-main-report',
