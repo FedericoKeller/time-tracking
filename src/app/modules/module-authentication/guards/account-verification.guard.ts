@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
-import { SignInService } from '../services/sign-in.service';
+import { SignInService } from 'src/app/services/sign-in.service';
 
 @Injectable()
 
