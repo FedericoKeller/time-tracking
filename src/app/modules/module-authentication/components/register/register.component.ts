@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(private readonly fb: FormBuilder, private signInService: SignInService) {
-
     this.registerForm = this.fb.group({
       email: new FormControl('', [Validators.required]),
       passwordsGroup: this.fb.group(
