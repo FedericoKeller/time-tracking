@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountVerificationGuard } from './guards/account-verification.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { SignInService } from 'src/app/services/sign-in.service';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
     component: SignInComponent,
   },
   {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
@@ -42,6 +47,7 @@ const routes: Routes = [
   declarations: [
     SignInComponent,
     RegisterComponent,
+    ForgotPasswordComponent
   ],
   providers: [
     AccountVerificationGuard,

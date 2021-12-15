@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    this.signInService.register({email: this.registerForm.get("email")?.value, password: this.registerForm.controls.passwordsGroup.get("password")?.value}).subscribe(data => {
+    this.signInService.register({email: this.registerForm.get("email")?.value, password: this.registerForm.controls.passwordsGroup.get("password")?.value, passwordConfirm:  this.registerForm.controls.passwordsGroup.get("passwordConfirm")?.value}).subscribe(data => {
       console.log(data)
     })
   }
