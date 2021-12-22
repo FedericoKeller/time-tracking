@@ -14,9 +14,7 @@ export class AccountVerificationGuard implements CanActivateChild {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let token: string = route.params["token"];
 
-
-
-    return this.signInService.validateAccount(token).pipe(
+    return this.signInService.confirmAccount(token).pipe(
      map(() => {
       return this.router.createUrlTree(["login"]);
      }),

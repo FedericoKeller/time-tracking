@@ -7,6 +7,8 @@ import { AccountVerificationGuard } from './guards/account-verification.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ResetPasswordGuard } from './guards/reset-password.guard';
 
 const routes: Routes = [
   {
@@ -30,6 +32,13 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
   },
   {
+    path: 'reset/:token',
+    component: ResetPasswordComponent,
+    canActivate: [
+      ResetPasswordGuard
+    ],
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
@@ -47,10 +56,12 @@ const routes: Routes = [
   declarations: [
     SignInComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   providers: [
     AccountVerificationGuard,
+    ResetPasswordGuard,
     SignInService,
   ]
 })

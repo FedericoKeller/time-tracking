@@ -11,7 +11,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: SignInService) {
+  constructor(private fb: FormBuilder, private signInService: SignInService) {
     this.forgotPasswordForm = this.fb.group({
       email: ['', Validators.required]
     })
@@ -21,7 +21,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   resetPassword(): void {
-    this.authService.resetPassword({email: this.forgotPasswordForm.get('email')?.value}).subscribe(data => {
+    this.signInService.sendResetPasswordEmail({email: this.forgotPasswordForm.get('email')?.value}).subscribe(data => {
       console.log(data)
     })
   }

@@ -17,11 +17,19 @@ login(email: any): Observable<any> {
 register(data: any): Observable<any> {
   return this.httpClient.post(`${environment.apiUrl}auth/register`, data);
 }
-resetPassword(email: any): Observable<any> {
-  return this.httpClient.post(`${environment.apiUrl}auth/resetPassword`, email);
+sendResetPasswordEmail(email: any): Observable<any> {
+  return this.httpClient.post(`${environment.apiUrl}auth/sendResetPasswordEmail`, email);
 }
 
-validateAccount(token: string) {
-return this.httpClient.put(`${environment.apiUrl}auth/reset/${token}`, {});
+resetPassword(data: any) {
+  return this.httpClient.post(`${environment.apiUrl}auth/resetPassword`, data);
+}
+
+getAccessToResetPassword(token: string) {
+  return this.httpClient.get(`${environment.apiUrl}auth/reset/${token}`);
+}
+
+confirmAccount(token: string): Observable<any> {
+return this.httpClient.put(`${environment.apiUrl}auth/confirmation/${token}`, {});
 }
 }
