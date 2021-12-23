@@ -9,8 +9,8 @@ import { MaterialModule } from './modules/material.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { AuthenticationEffects } from './auth/authentication.effects';
-import * as fromLogin from './auth/authentication.reducer';
+import { AuthenticationEffects } from './auth/auth.effects';
+import * as fromLogin from './auth/auth.reducer';
 import { SignInService } from './services/sign-in.service';
 import { appReducer } from './store/app.state';
 @NgModule({

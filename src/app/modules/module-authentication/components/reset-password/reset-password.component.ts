@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ValidatorFn, AbstractControl, ValidationErrors, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { SignInService } from 'src/app/services/sign-in.service';
+import { AppState } from 'src/app/store/app.state';
+import { resetPassword } from 'src/app/auth/auth.actions';
+import { Store } from '@ngrx/store';
 
 const passwordErrorValidator: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
   const pass = group.get('password');
@@ -20,7 +23,7 @@ export class ResetPasswordComponent implements OnInit {
   passwordsGroup: FormGroup;
   email: Data;
 
-  constructor(private fb: FormBuilder, private signInService: SignInService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private fb: FormBuilder, private store: Store<AppState>, private activatedRoute: ActivatedRoute, private router: Router) {
     this.passwordsGroup = this.fb.group(
       {
         password: new FormControl('', [Validators.required]),
@@ -29,8 +32,7 @@ export class ResetPasswordComponent implements OnInit {
       { validators: passwordErrorValidator }
     )
 
-    this.email = activatedRoute.snapshot.data;
-    console.log(this.email.email)
+    this.email = {...this.activatedRoute.snapshot.data};
   }
 
   ngOnInit() {
@@ -38,9 +40,9 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   resetPassword(): void {
-    this.signInService.resetPassword({email: this.email.email, ...this.passwordsGroup.value}).subscribe(data => {
-      this.router.navigate(["login"]);
-    })
+    const mergedForm = {...this.email, ...this.passwordsGroup.value};
+
+    this.store.dispatch(resetPassword(mergedForm));
   }
 
 }

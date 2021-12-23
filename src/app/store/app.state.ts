@@ -1,6 +1,6 @@
-import { AuthenticationReducer } from "../auth/authentication.reducer";
-import { AUTH_STATE_NAME } from "../auth/authentication.selector";
-import { AuthState } from "../auth/authentication.state";
+import { AuthenticationReducer } from "../auth/auth.reducer";
+import { AUTH_STATE_NAME } from "../auth/auth.selector";
+import { AuthState } from "../auth/auth.state";
 
 
 export interface AppState {

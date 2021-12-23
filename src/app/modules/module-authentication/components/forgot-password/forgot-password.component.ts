@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { SignInService } from 'src/app/services/sign-in.service';
-
+import { AppState } from 'src/app/store/app.state';
+import { sendForgotPasswordEmail } from 'src/app/auth/auth.actions';
+import * as fromAuth from '../../../../auth/auth.selector';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -11,7 +14,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private signInService: SignInService) {
+  constructor(private fb: FormBuilder, private signInService: SignInService, private store: Store<AppState>) {
     this.forgotPasswordForm = this.fb.group({
       email: ['', Validators.required]
     })
@@ -21,9 +24,9 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   resetPassword(): void {
-    this.signInService.sendResetPasswordEmail({email: this.forgotPasswordForm.get('email')?.value}).subscribe(data => {
-      console.log(data)
-    })
+    this.store.dispatch(sendForgotPasswordEmail(this.forgotPasswordForm.value));
+
+
   }
 
 }

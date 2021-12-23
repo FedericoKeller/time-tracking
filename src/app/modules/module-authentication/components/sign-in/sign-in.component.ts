@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { login } from 'src/app/auth/login-page.actions';
+import { login } from 'src/app/auth/auth.actions';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { AppState } from 'src/app/store/app.state';
 @Component({
@@ -27,6 +27,10 @@ export class SignInComponent implements OnInit {
 
   login() {
     this.store.dispatch(login({email: this.loginForm.get("email")?.value, password: this.loginForm.get("password")?.value}));
+
+    this.store.select('auth').subscribe(data => {
+      console.log(data)
+    })
   }
 
 }

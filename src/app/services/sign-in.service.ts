@@ -21,11 +21,11 @@ sendResetPasswordEmail(email: any): Observable<any> {
   return this.httpClient.post(`${environment.apiUrl}auth/sendResetPasswordEmail`, email);
 }
 
-resetPassword(data: any) {
+resetPassword(data: any): Observable<any> {
   return this.httpClient.post(`${environment.apiUrl}auth/resetPassword`, data);
 }
 
-getAccessToResetPassword(token: string) {
+getAccessToResetPassword(token: string): Observable<any> {
   return this.httpClient.get(`${environment.apiUrl}auth/reset/${token}`);
 }
 
