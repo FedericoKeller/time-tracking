@@ -5,6 +5,7 @@ import { SignInService } from 'src/app/services/sign-in.service';
 import { AppState } from 'src/app/store/app.state';
 import { sendForgotPasswordEmail } from 'src/app/auth/auth.actions';
 import * as fromAuth from '../../../../auth/auth.selector';
+import { setLoadingSpinnerOpen } from 'src/app/store/shared/shared.actions';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -24,6 +25,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   resetPassword(): void {
+    this.store.dispatch(setLoadingSpinnerOpen());
     this.store.dispatch(sendForgotPasswordEmail(this.forgotPasswordForm.value));
 
 

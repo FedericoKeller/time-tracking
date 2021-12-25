@@ -4,7 +4,7 @@ import { MainReportComponent } from './components/main-report/main-report.compon
 import { RouterModule, Routes } from '@angular/router';
 import { ActivityCardModule } from '../ui/activity-card/activity-card.module';
 import { FrequencyService } from 'src/app/services/frequency.service';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {

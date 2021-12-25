@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { AppState } from 'src/app/store/app.state';
 import { register } from 'src/app/auth/auth.actions';
+import { setLoadingSpinnerOpen } from 'src/app/store/shared/shared.actions';
 
 const passwordErrorValidator: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
   const pass = group.get('password');
@@ -42,7 +43,7 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
     const mergedForm = {email: this.registerForm.value.email, ...this.registerForm.controls.passwordsGroup.value};
-
+    this.store.dispatch(setLoadingSpinnerOpen());
    this.store.dispatch(register(mergedForm))
   }
 }

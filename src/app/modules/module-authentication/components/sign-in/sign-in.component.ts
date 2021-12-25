@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { login } from 'src/app/auth/auth.actions';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { AppState } from 'src/app/store/app.state';
+import { setLoadingSpinnerOpen } from 'src/app/store/shared/shared.actions';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -26,11 +27,8 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
-    this.store.dispatch(login({email: this.loginForm.get("email")?.value, password: this.loginForm.get("password")?.value}));
-
-    this.store.select('auth').subscribe(data => {
-      console.log(data)
-    })
+    this.store.dispatch(setLoadingSpinnerOpen());
+    this.store.dispatch(login(this.loginForm.value));
   }
 
 }

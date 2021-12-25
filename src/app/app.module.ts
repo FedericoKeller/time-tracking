@@ -13,6 +13,7 @@ import { AuthenticationEffects } from './auth/auth.effects';
 import * as fromLogin from './auth/auth.reducer';
 import { SignInService } from './services/sign-in.service';
 import { appReducer } from './store/app.state';
+import { SharedEffects } from './store/shared/shared.effects';
 @NgModule({
   declarations: [
     AppComponent
@@ -21,7 +22,7 @@ import { appReducer } from './store/app.state';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([AuthenticationEffects]),
+    EffectsModule.forRoot([AuthenticationEffects, SharedEffects]),
     StoreModule.forRoot(appReducer),
     StoreRouterConnectingModule.forRoot(),
     HttpClientModule,
