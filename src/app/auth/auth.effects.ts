@@ -16,9 +16,8 @@ export class AuthenticationEffects {
     private actions$: Actions,
     private signInService: SignInService,
     private router: Router,
-    private store: Store<AppState>,
+    private store: Store<AppState>
   ) {}
-
 
   login$ = createEffect(() =>
     this.actions$.pipe(
@@ -75,6 +74,7 @@ export class AuthenticationEffects {
           )
       ),
       catchError((error) => {
+        this.store.dispatch(setLoadingSpinnerClosed());
         return throwError(error);
       })
     )
@@ -94,7 +94,11 @@ export class AuthenticationEffects {
               return fromAuth.sendForgotPasswordEmailSuccess(data);
             })
           )
-      )
+      ),
+      catchError((error) => {
+        this.store.dispatch(setLoadingSpinnerClosed());
+        return throwError(error);
+      })
     )
   );
 
@@ -102,17 +106,23 @@ export class AuthenticationEffects {
     this.actions$.pipe(
       ofType(fromAuth.resetPassword),
       exhaustMap((action) =>
-        this.signInService.resetPassword({
-          email: action.email,
-          password: action.password,
-          passwordConfirm: action.passwordConfirm
-        }).pipe(
-          map((data) => {
-            this.store.dispatch(setLoadingSpinnerClosed());
-            return fromAuth.resetPasswordSuccess(data);
+        this.signInService
+          .resetPassword({
+            email: action.email,
+            password: action.password,
+            passwordConfirm: action.passwordConfirm,
           })
-        )
-      )
+          .pipe(
+            map((data) => {
+              this.store.dispatch(setLoadingSpinnerClosed());
+              return fromAuth.resetPasswordSuccess(data);
+            })
+          )
+      ),
+      catchError((error) => {
+        this.store.dispatch(setLoadingSpinnerClosed());
+        return throwError(error);
+      })
     )
   );
 }
