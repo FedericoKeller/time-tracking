@@ -9,6 +9,8 @@ export const initialState: Credentials = {
 const _authenticationReducer = createReducer(
   initialState,
   on(AuthActions.login, (state, payload) => ({...state, email: payload.email, password: payload.password})),
+  on(AuthActions.autoLogin, (state) => state),
+  on(AuthActions.autoLogout, (state) => state),
   on(AuthActions.loginSuccess, (state, payload) => ({...state, user: payload.user})),
   on(AuthActions.register, (state, payload) => ({...state, email: payload.email, password: payload.password, passwordConfirm: payload.passwordConfirm})),
   on(AuthActions.registerSuccess, (state) => state),

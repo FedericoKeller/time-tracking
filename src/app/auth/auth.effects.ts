@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of, throwError } from 'rxjs';
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, mergeMap, tap } from 'rxjs/operators';
+import { AuthResponse } from '../models/credentials.model';
 import { User } from '../models/user.model';
 import { SignInService } from '../services/sign-in.service';
 import { AppState } from '../store/app.state';
@@ -29,8 +30,11 @@ export class AuthenticationEffects {
             password: action.password,
           })
           .pipe(
-            map((user: User) => {
+            map((data: AuthResponse) => {
               this.store.dispatch(setLoadingSpinnerClosed());
+              this.signInService.setTokenInLocalStorage(data);
+              const user = this.signInService.formatUser(data);
+              this.signInService.runTimeoutInterval(user.expDate);
               return fromAuth.loginSuccess({ user: user, redirect: true });
             })
           )
@@ -54,6 +58,31 @@ export class AuthenticationEffects {
         })
       ),
     { dispatch: false }
+  );
+
+
+  autoLogin$ = createEffect(
+    () =>
+    this.actions$.pipe(
+      ofType(fromAuth.autoLogin),
+      mergeMap((action) => {
+          const user = this.signInService.getCurrentUser();
+          this.signInService.runTimeoutInterval(user.expDate);
+          return of(fromAuth.loginSuccess({user, redirect: true}))
+      })
+    )
+  )
+
+  logout$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromAuth.autoLogout),
+        map((action) => {
+          this.signInService.logout();
+          this.router.navigate(['login']);
+        })
+      ),
+      {dispatch: false}
   );
 
   register$ = createEffect(() =>

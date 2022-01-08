@@ -7,6 +7,13 @@ export const login = createAction(
   props<Credentials>()
 );
 
+export const autoLogin = createAction(
+  '[Login Page] Auto Login',
+);
+
+export const autoLogout = createAction(
+  '[Login Page] Auto Logout',
+);
 
 export const loginSuccess = createAction(
   '[Login Page] Login Success',

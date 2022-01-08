@@ -14,7 +14,7 @@ import { setLoadingSpinnerOpen } from 'src/app/store/shared/shared.actions';
 export class SignInComponent implements OnInit {
 
   loginForm: FormGroup;
-
+  
 
   constructor(private signInService: SignInService, private store: Store<AppState>, private router: Router) {
     this.loginForm = new FormGroup({

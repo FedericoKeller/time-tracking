@@ -9,7 +9,6 @@ const _sharedReducer = createReducer(
 )
 
 export function SharedReducer(state: any, action: Action) {
-  console.log(state, action)
   return _sharedReducer(state, action);
 
 }
