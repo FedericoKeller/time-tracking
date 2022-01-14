@@ -1,11 +1,11 @@
 import { NgModule, Type } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ActivityCardComponent } from './activity-card.component';
 import { SharedModule } from '../../shared/shared.module';
 import { FrequencyService } from 'src/app/services/frequency.service';
+import { BannerComponent } from './banner.component';
+import { BannerTitleService } from './services/banner-title.service';
 
 const components: Type<any>[] = [
-  ActivityCardComponent
+  BannerComponent
 ]
 
 @NgModule({
@@ -13,9 +13,9 @@ const components: Type<any>[] = [
     SharedModule,
   ],
   providers: [
-    FrequencyService,
+    BannerTitleService
   ],
   declarations: components,
   exports: components,
 })
-export class ActivityCardModule { }
+export class BannerModule { }

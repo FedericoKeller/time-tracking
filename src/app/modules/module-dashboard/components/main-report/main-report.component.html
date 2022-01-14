@@ -21,7 +21,10 @@
           </div>
         </section>
       </div>
-      <app-activity-card *ngFor="let item of this.totalActivity" [data]="item"></app-activity-card>
+      <app-card *ngFor="let item of this.totalActivity">
+        <app-banner [title]="item.title" header></app-banner>
+        <app-activity-report [data]="item" body></app-activity-report>
+      </app-card>
     </div>
   </div>
 </div>

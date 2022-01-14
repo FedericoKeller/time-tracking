@@ -1,0 +1,43 @@
+@use "../../../../../mixins" as *;
+
+
+.mat-card {
+  color: #fff;
+  background-color: var(--dark-blue);
+  height: 100%;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  width: 100%;
+  position: relative;
+  user-select: none;
+}
+
+.card {
+  width: 15rem;
+  height: 11rem;
+
+  @include respond(tab-port) {
+    width: 25rem;
+    height: 9rem;
+    margin-bottom: 4rem;
+  }
+
+  .container {
+    height: 100%;
+    position: relative;
+    z-index: 0;
+
+    .mat-icon-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: #fff;
+      z-index: 1;
+      transform: translate(-50%, 15%);
+
+      @include respond(tab-port) {
+        transform: translate(-50%, 0%);
+       }
+    }
+  }
+}

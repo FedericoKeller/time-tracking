@@ -1,0 +1,32 @@
+@use "../../../../../../../mixins" as *;
+
+
+.main {
+
+
+  &__heading {
+    font-weight: 400;
+    margin-left: 1rem;
+  }
+
+  &__details {
+    padding-left: 1rem;
+    font-weight: 300;
+
+    @include respond(tab-port) {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+    }
+
+    &--main {
+      font-size: 3.5rem;
+    }
+
+    &--sub {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: var(--pale-blue);
+    }
+  }
+}
