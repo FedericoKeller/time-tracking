@@ -1,59 +1,44 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
-import { MatButton } from '@angular/material/button';
-import { FrequencyExpected, FrequencyService } from 'src/app/services/frequency.service';
-import { TotalActivity } from '../../index';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
+import {
+  FrequencyExpected,
+  FrequencyService,
+} from 'src/app/services/frequency.service';
+import { ActivityData, TotalActivity, TOTAL_ACTIVITY_TOKEN } from '../../index';
 
 @Component({
   selector: 'app-main-report',
   templateUrl: './main-report.component.html',
-  styleUrls: ['./main-report.component.scss']
+  styleUrls: ['./main-report.component.scss'],
+  providers: [
+    {
+      provide: TOTAL_ACTIVITY_TOKEN,
+      useValue: TotalActivity,
+    },
+  ],
 })
-export class MainReportComponent implements OnInit, AfterViewInit {
+export class MainReportComponent implements OnInit {
+  totalFrequencies: FrequencyExpected[] = ['daily', 'weekly', 'monthly'];
 
-  totalActivity = TotalActivity;
-  totalFrequencies: FrequencyExpected[] = ["daily", "weekly", "monthly"];
+  activeButton: Record<FrequencyExpected, string> = {
+    daily: '',
+    weekly: 'active',
+    monthly: '',
+  };
 
-  @ViewChildren("frequencyItem") frequencyItems!: QueryList<MatButton>;
-  frequencyItemsList: MatButton[] = [];
+  constructor(
+    private frequencyService: FrequencyService,
+    @Inject(TOTAL_ACTIVITY_TOKEN) public totalActivity: ActivityData[]
+  ) {}
 
-  lastActiveItem: string | null = null;
-  lastActiveItemIndex: number | null = null;
+  ngOnInit() {}
 
-  constructor(private frequencyService: FrequencyService, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-    this.frequencyItemsList = this.frequencyItems.toArray();
-    this.changeState();
-  }
-
-  changeState(frequency?: FrequencyExpected): void {
-
-    this.updateCurrentItem();
-    console.log(this.frequencyItemsList)
-    this.renderer.removeClass(this.frequencyItemsList[this.lastActiveItemIndex!]._elementRef.nativeElement, "active");
-
-    if (this.isDefined(frequency)) {
-      this.frequencyService.changeFrequencyState(frequency);
+  changeState(frequency: FrequencyExpected): void {
+    for(let key of Object.keys(this.activeButton)){
+      this.activeButton[key as FrequencyExpected] = '';
     }
 
-    this.updateCurrentItem();
+    this.activeButton[frequency] = 'active';
 
-    this.renderer.addClass(this.frequencyItemsList[this.lastActiveItemIndex!]._elementRef.nativeElement, "active");
+    this.frequencyService.changeFrequencyState(frequency);
   }
-
-
-  isDefined<T>(val: T | undefined | null): val is T {
-    return val !== undefined && val !== null;
-  }
-
-  updateCurrentItem(): void {
-    this.lastActiveItem = this.frequencyService.getCurrentFrequencyState();
-    this.lastActiveItemIndex = this.totalFrequencies.findIndex(item => item == this.lastActiveItem);
-  }
-
 }
-

@@ -1,3 +1,5 @@
+import { InjectionToken } from "@angular/core";
+
 export type ActivityAssets = "Work" | "Play" | "Study" | "Exercise" | "Social" | "Self Care";
 export interface ActivityData {
   title: ActivityAssets;
@@ -15,6 +17,8 @@ export interface ActivityTimeline {
   current: number;
   previous: number;
 }
+
+export const TOTAL_ACTIVITY_TOKEN = new InjectionToken<ActivityData[]>('total_activity');
 
 export const TotalActivity: ActivityData[] =  [
   {

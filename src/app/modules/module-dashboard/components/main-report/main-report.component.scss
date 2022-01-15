@@ -80,6 +80,9 @@
           line-height: 2.3rem;
           margin: 0;
           text-align: left;
+          background: transparent;
+          border: none;
+          cursor: pointer;
 
           &::first-letter {
             text-transform: uppercase;
@@ -107,7 +110,6 @@
       @include respond(tab-port) {
         border: 2px solid #fff;
       }
-
 
       .user__img {
         max-width: 100%;

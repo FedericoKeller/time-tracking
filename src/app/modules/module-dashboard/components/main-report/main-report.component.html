@@ -3,20 +3,30 @@
     <div class="main-report__container">
       <div class="column">
         <section class="column__heading">
-         <div class="column__image">
-          <img class="user__img" src="../../../../assets/images/image-jeremy.png">
-         </div>
+          <div class="column__image">
+            <img
+              class="user__img"
+              src="../../../../assets/images/image-jeremy.png"
+            />
+          </div>
           <div class="column__text">
             <h2 class="column__text--main">Report for</h2>
             <h2 class="column__text--sub">Jeremy&nbsp;</h2>
             <h2 class="column__text--sub">Robson</h2>
-
           </div>
         </section>
         <section class="column__content">
           <div class="column__content__container">
             <div class="frequency__list">
-              <button mat-button class="frequency__item" #frequencyItem [disableRipple]="true" *ngFor="let frequency of totalFrequencies" (click)="changeState(frequency)">{{frequency}}</button>
+              <button
+                class="frequency__item"
+                #frequencyItem
+                *ngFor="let frequency of totalFrequencies"
+                [ngClass]="activeButton[frequency]"
+                (click)="changeState(frequency)"
+              >
+                {{ frequency }}
+              </button>
             </div>
           </div>
         </section>
@@ -28,4 +38,3 @@
     </div>
   </div>
 </div>
-
