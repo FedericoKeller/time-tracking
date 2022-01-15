@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountVerificationGuard } from './guards/account-verification.guard';
 import { RegisterComponent } from './components/register/register.component';
-import { SignInService } from 'src/app/services/sign-in.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ResetPasswordGuard } from './guards/reset-password.guard';
@@ -62,7 +62,7 @@ const routes: Routes = [
   providers: [
     AccountVerificationGuard,
     ResetPasswordGuard,
-    SignInService,
+    AuthService,
   ]
 })
 export class AuthenticationModule { }

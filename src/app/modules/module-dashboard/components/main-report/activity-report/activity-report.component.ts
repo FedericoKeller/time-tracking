@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FrequencyExpected, FrequencyService } from 'src/app/services/frequency.service';
+import { FrequencyExpected, FrequencyService } from 'src/app/modules/module-dashboard/services/frequency.service';
 import { ActivityAssets, ActivityData } from '../../..';
 
 export interface ActivityProperties {

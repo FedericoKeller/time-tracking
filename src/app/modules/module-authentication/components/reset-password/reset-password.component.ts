@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidatorFn, AbstractControl, ValidationErrors, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import { SignInService } from 'src/app/services/sign-in.service';
 import { AppState } from 'src/app/store/app.state';
 import { resetPassword } from 'src/app/auth/auth.actions';
 import { Store } from '@ngrx/store';
@@ -24,7 +23,7 @@ export class ResetPasswordComponent implements OnInit {
   passwordsGroup: FormGroup;
   email: Data;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private fb: FormBuilder, private store: Store<AppState>, private activatedRoute: ActivatedRoute) {
     this.passwordsGroup = this.fb.group(
       {
         password: new FormControl('', [Validators.required]),

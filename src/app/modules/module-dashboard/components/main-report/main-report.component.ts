@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import {
   FrequencyExpected,
   FrequencyService,
-} from 'src/app/services/frequency.service';
+} from 'src/app/modules/module-dashboard/services/frequency.service';
 import { ActivityData, TotalActivity, TOTAL_ACTIVITY_TOKEN } from '../../index';
 
 @Component({

@@ -6,7 +6,8 @@ import { of, throwError } from 'rxjs';
 import { catchError, exhaustMap, map, mergeMap, tap } from 'rxjs/operators';
 import { AuthResponse } from '../models/credentials.model';
 import { User } from '../models/user.model';
-import { SignInService } from '../services/sign-in.service';
+import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 import { AppState } from '../store/app.state';
 import { setLoadingSpinnerClosed } from '../store/shared/shared.actions';
 import * as fromAuth from './auth.actions';
@@ -15,7 +16,8 @@ import * as fromAuth from './auth.actions';
 export class AuthenticationEffects {
   constructor(
     private actions$: Actions,
-    private signInService: SignInService,
+    private authService: AuthService,
+    private userService: UserService,
     private router: Router,
     private store: Store<AppState>
   ) {}
@@ -24,7 +26,7 @@ export class AuthenticationEffects {
     this.actions$.pipe(
       ofType(fromAuth.login),
       exhaustMap((action) =>
-        this.signInService
+        this.authService
           .login({
             email: action.email,
             password: action.password,
@@ -32,9 +34,9 @@ export class AuthenticationEffects {
           .pipe(
             map((data: AuthResponse) => {
               this.store.dispatch(setLoadingSpinnerClosed());
-              this.signInService.setTokenInLocalStorage(data);
-              const user = this.signInService.formatUser(data);
-              this.signInService.runTimeoutInterval(user.expDate);
+              this.userService.setTokenInLocalStorage(data);
+              const user = this.userService.formatUser(data);
+              this.authService.runTimeoutInterval(user.expDate);
               return fromAuth.loginSuccess({ user: user, redirect: true });
             })
           )
@@ -66,8 +68,8 @@ export class AuthenticationEffects {
     this.actions$.pipe(
       ofType(fromAuth.autoLogin),
       mergeMap((action) => {
-          const user = this.signInService.getCurrentUser();
-          this.signInService.runTimeoutInterval(user.expDate);
+          const user = this.userService.getCurrentUser();
+          this.authService.runTimeoutInterval(user.expDate);
           return of(fromAuth.loginSuccess({user, redirect: true}))
       })
     )
@@ -78,7 +80,7 @@ export class AuthenticationEffects {
       this.actions$.pipe(
         ofType(fromAuth.autoLogout),
         map((action) => {
-          this.signInService.logout();
+          this.authService.logout();
           this.router.navigate(['login']);
         })
       ),
@@ -89,7 +91,7 @@ export class AuthenticationEffects {
     this.actions$.pipe(
       ofType(fromAuth.register),
       exhaustMap((action) =>
-        this.signInService
+        this.authService
           .register({
             email: action.email,
             password: action.password,
@@ -113,7 +115,7 @@ export class AuthenticationEffects {
     this.actions$.pipe(
       ofType(fromAuth.sendForgotPasswordEmail),
       exhaustMap((action) =>
-        this.signInService
+        this.authService
           .sendResetPasswordEmail({
             email: action.email,
           })
@@ -135,7 +137,7 @@ export class AuthenticationEffects {
     this.actions$.pipe(
       ofType(fromAuth.resetPassword),
       exhaustMap((action) =>
-        this.signInService
+        this.authService
           .resetPassword({
             email: action.email,
             password: action.password,

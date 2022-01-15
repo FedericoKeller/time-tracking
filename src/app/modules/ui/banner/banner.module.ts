@@ -1,6 +1,5 @@
 import { NgModule, Type } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
-import { FrequencyService } from 'src/app/services/frequency.service';
 import { BannerComponent } from './banner.component';
 import { BannerTitleService } from './services/banner-title.service';
 

@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MainReportComponent } from './components/main-report/main-report.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CardModule } from '../ui/card/card.module';
-import { FrequencyService } from 'src/app/services/frequency.service';
+import { FrequencyService } from 'src/app/modules/module-dashboard/services/frequency.service';
 import { SharedModule } from '../shared/shared.module';
 import { ActivityReportComponent } from './components/main-report/activity-report/activity-report.component';
 import { BannerModule } from '../ui/banner/banner.module';
