@@ -19,13 +19,30 @@ const passwordErrorValidator: ValidatorFn = (group: AbstractControl): Validation
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+
+  get email() {
+    return this.registerForm.get('email') as FormControl;
+  }
+
+  get passwordsGroup() {
+    return this.registerForm.controls.passwordsGroup as FormGroup;
+  }
+
+  get password() {
+    return this.registerForm.controls.passwordsGroup.get('password') as FormControl;
+  }
+
+  get passwordConfirm() {
+    return this.registerForm.controls.passwordsGroup.get('passwordConfirm') as FormControl;
+  }
+
   registerForm: FormGroup;
 
 
   constructor(private readonly fb: FormBuilder, private store: Store<AppState>) {
 
     this.registerForm = this.fb.group({
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       passwordsGroup: this.fb.group(
         {
           password: new FormControl('', [Validators.required]),
@@ -41,6 +58,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
+    if(this.registerForm.invalid) return;
+
     const mergedForm = {email: this.registerForm.value.email, ...this.registerForm.controls.passwordsGroup.value};
     this.store.dispatch(setLoadingSpinnerOpen());
    this.store.dispatch(register(mergedForm))

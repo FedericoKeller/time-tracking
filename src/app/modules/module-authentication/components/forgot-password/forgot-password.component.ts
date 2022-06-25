@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { sendForgotPasswordEmail } from 'src/app/auth/auth.actions';
@@ -11,11 +11,15 @@ import { setLoadingSpinnerOpen } from 'src/app/store/shared/shared.actions';
 })
 export class ForgotPasswordComponent implements OnInit {
 
+  get email() {
+    return this.forgotPasswordForm.get('email') as FormControl;
+  }
+
   forgotPasswordForm: FormGroup;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>) {
     this.forgotPasswordForm = this.fb.group({
-      email: ['', Validators.required]
+      email: new FormControl('', [Validators.required, Validators.email]),
     })
   }
 
@@ -23,6 +27,8 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   resetPassword(): void {
+    if(this.forgotPasswordForm.invalid) return;
+
     this.store.dispatch(setLoadingSpinnerOpen());
     this.store.dispatch(sendForgotPasswordEmail(this.forgotPasswordForm.value));
 

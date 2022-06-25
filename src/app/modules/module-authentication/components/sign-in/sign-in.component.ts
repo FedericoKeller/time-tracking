@@ -11,13 +11,21 @@ import { setLoadingSpinnerOpen } from 'src/app/store/shared/shared.actions';
 })
 export class SignInComponent implements OnInit {
 
+  get email() {
+    return this.loginForm.get('email') as FormControl;
+  }
+
+  get password() {
+    return this.loginForm.get('password') as FormControl;
+  }
+
   loginForm: FormGroup;
 
 
   constructor(private store: Store<AppState>) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      email: new FormControl('test@test.com', [Validators.required, Validators.email]),
+      password: new FormControl('123456', [Validators.required]),
     })
   }
 
@@ -25,6 +33,8 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
+    if(this.loginForm.invalid) return;
+
     this.store.dispatch(setLoadingSpinnerOpen());
     this.store.dispatch(login(this.loginForm.value));
   }

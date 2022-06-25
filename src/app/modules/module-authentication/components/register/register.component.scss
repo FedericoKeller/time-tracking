@@ -162,19 +162,3 @@
     font-size: 0.8rem;
     text-align: center;
 }
-
-.message__error {
-  font-size: 0.8rem;
-  margin-left: 1rem;
-  animation: fadeIn .5s;
-
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}

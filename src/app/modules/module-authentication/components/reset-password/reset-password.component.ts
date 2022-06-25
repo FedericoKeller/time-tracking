@@ -40,6 +40,8 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   resetPassword(): void {
+    if(this.passwordsGroup.invalid) return;
+
     const mergedForm = {...this.email, ...this.passwordsGroup.value};
     this.store.dispatch(setLoadingSpinnerOpen());
     this.store.dispatch(resetPassword(mergedForm));
